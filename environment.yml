@@ -1,0 +1,9 @@
+name: nb-scraper
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pandas
+  - selenium
+  - beautifulsoup4
+  - jupyterlab
