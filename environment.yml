@@ -4,10 +4,12 @@ channels:
 dependencies:
   - python=3.8
   - pandas=1.4.2
-  - selenium=4.1.0
   - beautifulsoup4=4.11.1
   - jupyterlab=3.4.0
   - lxml=4.8.0
   - ca-certificates
   - certifi
   - openssl
+  - pip=23
+  - pip:
+      - selenium==4.9.1
