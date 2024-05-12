@@ -13,3 +13,7 @@ class CandidateRow:
     Electorate: int
     Turnout: str
     Spoilt_ballots: int
+    Elected: bool = False
+
+    def set_winner(self) -> None:
+        self.Elected = True

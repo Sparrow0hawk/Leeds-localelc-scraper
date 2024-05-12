@@ -5,6 +5,7 @@ from typing import Generator
 from bs4 import Tag
 
 from election_scraper.candidate_row import CandidateRow
+from election_scraper.ward_result import WardResult
 
 
 class AccordionComponent:
@@ -15,21 +16,26 @@ class AccordionComponent:
         ]
         self.results = [AccordionPanelComponent(panel) for panel in accordion.select("div.accordion__panel")]
 
-    def result_rows(self) -> Generator[CandidateRow, None, None]:
+    def result_rows(self) -> Generator[WardResult, None, None]:
         result: AccordionPanelComponent
         for ward, result in zip(self.wards, self.results):
+            ward_row = WardResult()
             for row in result.results_table:
                 surname, forename = row.candidate_name.split(" ", maxsplit=1)
-                yield CandidateRow(
-                    AreaName=ward.ward,
-                    CandidateForename=forename,
-                    CandidateSurname=surname,
-                    CandidateDescription=row.candidate_description,
-                    CandidateVotes=int(row.candidate_votes.replace(",", "")),
-                    Electorate=int(result.turnout_table.electorate.value.replace(",", "")),
-                    Turnout=result.turnout_table.turnout.value,
-                    Spoilt_ballots=int(result.turnout_table.spoilt_ballots.value),
+                ward_row.add_candidate_row(
+                    CandidateRow(
+                        AreaName=ward.ward,
+                        CandidateForename=forename,
+                        CandidateSurname=surname,
+                        CandidateDescription=row.candidate_description,
+                        CandidateVotes=int(row.candidate_votes.replace(",", "")),
+                        Electorate=int(result.turnout_table.electorate.value.replace(",", "")),
+                        Turnout=result.turnout_table.turnout.value,
+                        Spoilt_ballots=int(result.turnout_table.spoilt_ballots.value),
+                    )
                 )
+            ward_row.find_winner()
+            yield ward_row
 
 
 class AccordionHeadingComponent:

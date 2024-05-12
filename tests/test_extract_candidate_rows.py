@@ -23,4 +23,5 @@ def test_extract_candidate_rows() -> None:
         and row1["CandidateForename"] == "Bilbo"
         and row1["CandidateSurname"] == "BAGGINS"
         and row1["CandidateVotes"] == 4123
+        and row1["Elected"] is False
     )

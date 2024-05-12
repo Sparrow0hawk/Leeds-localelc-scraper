@@ -28,6 +28,6 @@ def test_execute(output: StringIO) -> None:
 
     assert (
         header
-        == "AreaName,CandidateForename,CandidateSurname,CandidateDescription,CandidateVotes,Electorate,Turnout,Spoilt_ballots"
-        and line1 == "Hobbiton,Bilbo,BAGGINS,The Party Tree,4123,10000,80%,102"
+        == "AreaName,CandidateForename,CandidateSurname,CandidateDescription,CandidateVotes,Electorate,Turnout,Spoilt_ballots,Elected"
+        and line1 == "Hobbiton,Bilbo,BAGGINS,The Party Tree,4123,10000,80%,102,True"
     )

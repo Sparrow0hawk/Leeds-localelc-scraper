@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from bs4 import BeautifulSoup
-from dataclasses import asdict
 
 from election_scraper.accordion import AccordionComponent
 
@@ -12,6 +11,6 @@ def extract_candidate_rows(html_page: str) -> list[dict[str, str | int]]:
     assert accordion_tag
     accordion = AccordionComponent(accordion_tag)
 
-    candidate_rows = list(accordion.result_rows())
+    ward_result_rows = [ward_row for ward_rows in accordion.result_rows() for ward_row in ward_rows.as_dict()]
 
-    return [asdict(candidate_row) for candidate_row in candidate_rows]
+    return ward_result_rows
