@@ -1,31 +1,36 @@
-# Web scrape the local election results for Leeds 2019 into a csv format
+# Scrape Leeds Local Election results page
 
-These results will be published on datamillnorth in 2 weeks but before then you can use this jupyter notebook to either scrape them yourself or simply download the pre-scraped .csv.
+A CLI tool to scrape the [Leeds Local Election results page](https://www.leeds.gov.uk/your-council/elections/leeds-city-council-election-results).
+Data is published as a tabular file on Data Mill North 2 weeks after the result, but in the meantime you can use
+this tool to extract the data.
 
-Vote shares are included and calculated.
+The structure of the final file is aimed to roughly align with the format of the file shared on Data Mill North.R
 
 ## Set up
+- Python 3.12
+- GNU Make
 
-To set up this notebook and run it you'll need a couple of things:
-- An installation of the [conda package management](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) system
-- An installation of chrome
-- An installation of [chromedriver](https://chromedriver.chromium.org/downloads) that should be installed into the `tools` subdirectory of this repo
-
-With these tools you next need to create a [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with the following steps using a shell:
-
-```bash
-$ cd leeds-localelc-scraper
-
-$ conda env create -f environment.yml
-```
-
-To use the notebook you need to activate the environment and start jupyter lab:
-
-```bash
-$ conda activate nb-scraper
-
-$ jupyter lab
-```
+1. Create virtual environment
+   ```bash
+   python3.12 -m venv --prompt . .venv
+   ```
+2. Install project dependencies
+   ```bash
+   # activate virtual environment
+   . .venv/bin/activate
+   
+   # install dependencies including dev dependencies
+   pip install .[dev]
+   ```
+3. Run tests
+   ```bash
+   make test
+   ```
+4. Run CLI 
+   ```bash
+   election_scraper --url https://www.leeds.gov.uk/your-council/elections/leeds-city-council-election-results
+   ```
+   This writes the data to a `results.csv` file in your current directory.
 
 ## The data
 

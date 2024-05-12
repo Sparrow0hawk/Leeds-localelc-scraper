@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+<h1>Leeds City Council election results</h1>
+<div class="text">
+        <div class="accordion">
+            <h3 class="accordion__heading">{{ ward }}</h3>
+            <div class="accordion__panel">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th scope="col"> Candidate</th>
+                            <th scope="col"> Description</th>
+                            <th class="numeric" scope="col"> Votes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for candidate in candidates %}
+                        <tr>
+                            <td> {{ candidate.name }}</td>
+                            <td> {{ candidate.party }}</td>
+                            <td class="numeric"> {{ candidate.votes }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th scope="col"> Electorate:</th>
+                            <td class="numeric"> {{ electorate }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col"> Turnout:</th>
+                            <td class="numeric"> {{ turnout }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col"> Spoilt ballots:</th>
+                            <td class="numeric"> {{ spoilt }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

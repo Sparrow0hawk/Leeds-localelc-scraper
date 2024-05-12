@@ -1,5 +1,13 @@
-.ipynb_checkpoints
+# IDE
 .vscode
-tools/*
+.idea
+
+# python
+__pycache__
+.venv
+
+# mac
 .DS_store
-!tools/.gitkeep
+
+# results
+results.csv
